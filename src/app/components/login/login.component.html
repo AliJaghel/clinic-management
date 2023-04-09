@@ -1,0 +1,34 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Changa&display=swap" rel="stylesheet">
+<div class=" container vh-100  ">
+  <div class="d-flex h-100 default-border-radius overflow-hidden primary-blue-bg login-container  p-5">
+
+    <div
+      class="h-100 w-100 bg-white  d-flex flex-column align-items-center justify-content-center login-form-container">
+      <h3 class="logo-title">THE CLINIC MANAGEMENT</h3>
+      <form class="example-form d-flex flex-column p-5">
+        <mat-form-field>
+          <mat-label>Username</mat-label>
+          <input matInput placeholder="Username">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input required type="password" matInput placeholder="Password">
+        </mat-form-field>
+
+        <button class="login-button" mat-raised-button>
+          <mat-spinner *ngIf="false" diameter="20" class="loader-spinner"></mat-spinner>
+          <span>Login</span>
+        </button>
+        <p class=" btn mt-5">forgot password?</p>
+      </form>
+    </div>
+    <div class="h-100 w-100 d-flex flex-column align-items-center justify-content-center  ">
+
+      <ng-lottie [options]="options"></ng-lottie>
+      <p>Better health, better tomorrow..</p>
+    </div>
+  </div>
+
+</div>

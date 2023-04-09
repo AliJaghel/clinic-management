@@ -1,11 +1,18 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "8fde12b8-2cca-425b-a10d-8abb6e31dd7f"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
     "clinic-management": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+            "style": "scss"
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",

@@ -12,19 +12,21 @@ body {
   height: 100%;
 }
 body {
-  background-image: url("./assets/images/white-blue-background.jpg");
+  background-image: url("./assets/images/white-background.jpg");
+  background-repeat: no-repeat, repeat;
+  background-position: center;
+  background-size: cover;
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   // background-color: var(--blue-light);
 }
 
-
 /* Change the white to any color */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
-input:-webkit-autofill:active{
-    -webkit-box-shadow: 0 0 0 30px white inset !important;
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
 
 .primary-blue-bg {
