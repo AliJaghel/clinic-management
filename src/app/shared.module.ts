@@ -8,6 +8,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatListModule} from '@angular/material/list';
+import { FormsModule } from '@angular/forms';
 
 export function playerFactory() {
   return import(/* webpackChunkName: 'lottie-web' */ 'lottie-web');
@@ -23,6 +24,7 @@ export function playerFactory() {
     MatListModule,
     MatIconModule,
     MatToolbarModule,
+    FormsModule,
     LottieModule.forRoot({ player: playerFactory }),
   ],
   exports: [
@@ -33,6 +35,7 @@ export function playerFactory() {
     MatSidenavModule,
     MatIconModule,
     MatToolbarModule,
+    FormsModule,
     LottieModule]
 })
 export class SharedModule { }

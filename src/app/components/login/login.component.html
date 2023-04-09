@@ -7,24 +7,25 @@
     <div
       class="h-100 w-100 bg-white  d-flex flex-column align-items-center justify-content-center login-form-container">
       <h3 class="logo-title">THE CLINIC MANAGEMENT</h3>
-      <form class="example-form d-flex flex-column p-5">
+      <form #loginForm="ngForm" class="login-form d-flex flex-column p-5">
         <mat-form-field>
           <mat-label>Username</mat-label>
-          <input matInput placeholder="Username">
+          <input [disabled]="isLoading" [(ngModel)]="user.username" name="username"   id="username"  #username="ngModel" required matInput placeholder="Username">
         </mat-form-field>
         <mat-form-field>
           <mat-label>Password</mat-label>
-          <input required type="password" matInput placeholder="Password">
+          <input [disabled]="isLoading"  [(ngModel)]="user.password" name="password" id="password"  required type="password"  #password="ngModel" matInput placeholder="Password">
         </mat-form-field>
-
-        <button class="login-button" mat-raised-button>
-          <mat-spinner *ngIf="false" diameter="20" class="loader-spinner"></mat-spinner>
-          <span>Login</span>
+        <p class="text-danger py-3" *ngIf="errorMsg">{{errorMsg}}</p>
+        <button [disabled]="! loginForm.valid" class="login-button" mat-raised-button  (click)="login()">
+          <mat-spinner *ngIf="isLoading" diameter="20" class="loader-spinner"></mat-spinner>
+          <span  *ngIf="!isLoading">Login</span>
         </button>
+
         <p class=" btn mt-5">forgot password?</p>
       </form>
     </div>
-    <div class="h-100 w-100 d-flex flex-column align-items-center justify-content-center  ">
+    <div class="h-100 w-100 d-flex flex-column align-items-center justify-content-center  w-80">
 
       <ng-lottie width="315px" [options]="options"></ng-lottie>
       <p>Better health, better tomorrow..</p>
