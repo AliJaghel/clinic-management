@@ -1,26 +1,36 @@
-@import 'material-icons/iconfont/material-icons.css';
+@import "material-icons/iconfont/material-icons.css";
 
 :root {
-  --cayne:#365CC1;
---blue:#2ca6ff;
---blue-light:#E5F8FF;
-  --default-border-radius:4px;
-  }
+  --cayne: #365cc1;
+  --blue: #2ca6ff;
+  --blue-light: #e5f8ff;
+  --default-border-radius: 4px;
+}
 
-
-html, body { height: 100%; }
+html,
 body {
-background-image: url("./assets/images/white-blue-background.jpg");
-  margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
- // background-color: var(--blue-light);
+  height: 100%;
+}
+body {
+  background-image: url("./assets/images/white-blue-background.jpg");
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  // background-color: var(--blue-light);
 }
 
 
+/* Change the white to any color */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
 
-.primary-blue-bg{
+.primary-blue-bg {
   background-color: var(--blue-light);
 }
 
-.default-border-radius{
+.default-border-radius {
   border-radius: var(--default-border-radius);
 }
