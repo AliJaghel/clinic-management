@@ -1,0 +1,26 @@
+@import 'material-icons/iconfont/material-icons.css';
+
+:root {
+  --cayne:#365CC1;
+--blue:#2ca6ff;
+--blue-light:#E5F8FF;
+  --default-border-radius:4px;
+  }
+
+
+html, body { height: 100%; }
+body {
+background-image: url("./assets/images/white-blue-background.jpg");
+  margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
+ // background-color: var(--blue-light);
+}
+
+
+
+.primary-blue-bg{
+  background-color: var(--blue-light);
+}
+
+.default-border-radius{
+  border-radius: var(--default-border-radius);
+}
