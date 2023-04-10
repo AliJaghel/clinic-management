@@ -1,28 +1,29 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Changa&display=swap" rel="stylesheet">
-<div class=" container vh-100    p-5">
+<div class=" container vh-100 p-5">
   <div class="d-flex h-100 default-border-radius overflow-hidden primary-blue-bg login-container">
 
     <div
       class="h-100 w-100 bg-white  d-flex flex-column align-items-center justify-content-center login-form-container">
-      <h3 class="logo-title">THE CLINIC MANAGEMENT</h3>
-      <form #loginForm="ngForm" class="login-form d-flex flex-column p-5">
+      <h3 class="logo-title mb-4">THE CLINIC MANAGEMENT</h3>
+      <form #loginForm="ngForm" class="login-form d-flex flex-column p-2">
         <mat-form-field>
           <mat-label>Username</mat-label>
-          <input [disabled]="isLoading" [(ngModel)]="user.username" name="username"   id="username"  #username="ngModel" required matInput placeholder="Username">
+          <input [disabled]="isLoading" [(ngModel)]="user.username" name="username" id="username" #username="ngModel"
+            required matInput placeholder="Username">
         </mat-form-field>
         <mat-form-field>
           <mat-label>Password</mat-label>
-          <input [disabled]="isLoading"  [(ngModel)]="user.password" name="password" id="password"  required type="password"  #password="ngModel" matInput placeholder="Password">
+          <input [disabled]="isLoading" [(ngModel)]="user.password" name="password" id="password" required
+            type="password" #password="ngModel" matInput placeholder="Password">
         </mat-form-field>
-        <p class="text-danger py-3" *ngIf="errorMsg">{{errorMsg}}</p>
-        <button [disabled]="! loginForm.valid" class="login-button" mat-raised-button  (click)="login()">
+        <p class="text-danger form-error-msg py-3">{{errorMsg}}</p>
+        <button [disabled]="! loginForm.valid" class="login-button" mat-raised-button (click)="login()">
           <mat-spinner *ngIf="isLoading" diameter="20" class="loader-spinner"></mat-spinner>
-          <span  *ngIf="!isLoading">Login</span>
+          <span *ngIf="!isLoading">Login</span>
         </button>
 
-        <p class=" btn mt-5">forgot password?</p>
       </form>
     </div>
     <div class="h-100 w-100 d-flex flex-column align-items-center justify-content-center  w-80">

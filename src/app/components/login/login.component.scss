@@ -18,23 +18,27 @@
   }
   .login-form-container {
     box-shadow: 25px 0 20px -20px rgba(41, 41, 41, 0.45);
-.login-form{
-width: 500px;
-text-align: center;;
-    .login-button {
-      width: 50%;
-      align-self: center;
+    .login-form {
+      //max-width: 500px;
       text-align: center;
-      color: var(--blue) !important;
-      transition: all linear 200ms;
-      &.mat-mdc-raised-button[disabled]{
-        background-color: #c7c7c7c7 !important;
-        color: white!important;
+      .login-button {
+        width: 50%;
+        align-self: center;
+        text-align: center;
+        color: var(--blue) !important;
+        transition: all linear 200ms;
+        &.mat-mdc-raised-button[disabled] {
+          background-color: #c7c7c7c7 !important;
+          color: white !important;
+        }
+        &:hover {
+          background-color: var(--blue) !important;
+          color: white !important;
+        }
       }
-      &:hover {
-        background-color: var(--blue) !important;
-        color: white !important;
+      .form-error-msg{
+        height: 60px;
       }
-    }}
+    }
   }
 }

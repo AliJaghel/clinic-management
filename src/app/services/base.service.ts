@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class BaseService {
-
+  public baseName = '';
   constructor(protected http: HttpClient) {
   }
 

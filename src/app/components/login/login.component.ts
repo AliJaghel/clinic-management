@@ -5,21 +5,25 @@ import { SharedModule } from 'src/app/shared.module';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { LoginFormModel } from 'src/app/models/login-form.model';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-
+import {ActivatedRoute, Router} from '@angular/router';
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [CommonModule, SharedModule, HttpClientModule],
-  providers: [AuthenticationService, HttpClient],
+  providers: [AuthenticationService, HttpClient,],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private authenticationService: AuthenticationService) { }
+  constructor(private authenticationService: AuthenticationService,private router:Router) {
+            if (this.authenticationService.isLogedIn) {
+              this.router.navigate(['/']);
+          }
+  }
   user: LoginFormModel = { username: '', password: '' };
-  isLoading = false;
-  errorMsg=''
+  isLoading = this.authenticationService.isLogedIn;
+  errorMsg = ''
   options: AnimationOptions = {
     path: '/assets/lottie/doctor.json',
   };
@@ -27,16 +31,21 @@ export class LoginComponent implements OnInit {
   login() {
     this.isLoading = true;
     this.errorMsg = '';
-    this.authenticationService.login(this.user).subscribe(res => {
+    this.authenticationService.login(this.user).subscribe((res: any) => {
       this.isLoading = false;
-      console.log(res);
+      this.router.navigate(['/']);
     }, err => {
       this.isLoading = false;
-      this.errorMsg = err;
+      console.log(err);
+
+    this.errorMsg = err.error.message;
     })
   }
 
   ngOnInit(): void {
+    this.authenticationService.loginSubject.subscribe(logedIn=>{
+      this.isLoading = logedIn
+    })
   }
 
 }
