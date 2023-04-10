@@ -9,7 +9,8 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatListModule} from '@angular/material/list';
 import { FormsModule } from '@angular/forms';
-
+import {MatTableModule} from '@angular/material/table';
+import {MatRippleModule} from '@angular/material/core';
 export function playerFactory() {
   return import(/* webpackChunkName: 'lottie-web' */ 'lottie-web');
 }
@@ -24,6 +25,8 @@ export function playerFactory() {
     MatListModule,
     MatIconModule,
     MatToolbarModule,
+    MatTableModule,
+    MatRippleModule,
     FormsModule,
     LottieModule.forRoot({ player: playerFactory }),
   ],
@@ -35,6 +38,8 @@ export function playerFactory() {
     MatSidenavModule,
     MatIconModule,
     MatToolbarModule,
+    MatTableModule,
+    MatRippleModule,
     FormsModule,
     LottieModule]
 })

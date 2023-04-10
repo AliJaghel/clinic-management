@@ -3,13 +3,13 @@ import { SharedModule } from 'src/app/shared.module';
 import { Component, ElementRef, HostListener, ViewChild, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, SharedModule],
+  imports: [CommonModule,RouterModule , SharedModule],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   animations: [
