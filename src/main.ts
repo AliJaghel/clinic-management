@@ -8,7 +8,7 @@ import { mockBackendProvider } from './app/helpers/fake-backend/mock-backend';
 import { provideRouter } from '@angular/router';
 import { appRoutes } from './app/app-routing.module';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 bootstrapApplication(AppComponent, {
 
@@ -17,7 +17,7 @@ bootstrapApplication(AppComponent, {
     mockBackendProvider,
     provideRouter(appRoutes),
     provideAnimations(),
-    provideHttpClient(),
+    provideHttpClient(withInterceptorsFromDi()),
     importProvidersFrom(SharedModule)
 
   ]

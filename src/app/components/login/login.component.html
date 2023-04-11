@@ -2,7 +2,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Changa&display=swap" rel="stylesheet">
 <div class=" container vh-100 p-5">
-  <div class="d-flex h-100 default-border-radius overflow-hidden primary-blue-bg login-container">
+  <div *ngIf="!isLoggedIn" class="d-flex h-100 default-border-radius overflow-hidden primary-blue-bg login-container">
 
     <div
       class="h-100 w-100 bg-white  d-flex flex-column align-items-center justify-content-center login-form-container">
@@ -19,7 +19,7 @@
             type="password" #password="ngModel" matInput placeholder="Password">
         </mat-form-field>
         <p class="text-danger form-error-msg py-3">{{errorMsg}}</p>
-        <button [disabled]="! loginForm.valid" class="login-button" mat-raised-button (click)="login()">
+        <button [disabled]="!loginForm.valid" class="login-button" mat-raised-button (click)="login()">
           <mat-spinner *ngIf="isLoading" diameter="20" class="loader-spinner"></mat-spinner>
           <span *ngIf="!isLoading">Login</span>
         </button>

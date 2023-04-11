@@ -17,7 +17,7 @@ export class AuthenticationService extends BaseService {
   public get user(): User {
     return this.currentUser;
   }
-  public get isLogedIn(): boolean {
+  public get isLoggedIn(): boolean {
     return !!localStorage.getItem('token') && !!localStorage.getItem('userRole');
   }
 

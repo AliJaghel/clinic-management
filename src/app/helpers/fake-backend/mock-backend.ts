@@ -10,6 +10,7 @@ const users = [
   { id: 2, username: 'user', password: 'user', firstName: 'Normal', lastName: 'User', role: Role.User }
 ];
 
+
 @Injectable()
 export class MockBackendInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -38,7 +39,7 @@ export class MockBackendInterceptor implements HttpInterceptor {
       const user = users.find(x => x.username === username && x.password === password);
       if (!user) return error('Username or password is incorrect');
       return ok({
-        user:user,
+        user: user,
         access_token: `fake-jwt-token.${user.id}`
       });
     }
@@ -60,7 +61,7 @@ export class MockBackendInterceptor implements HttpInterceptor {
 
     // helper functions
 
-    function ok(body:any) {
+    function ok(body: any) {
       return of(new HttpResponse({ status: 200, body }))
         .pipe(delay(500)); // delay observable to simulate server api call
     }
@@ -70,7 +71,7 @@ export class MockBackendInterceptor implements HttpInterceptor {
         .pipe(materialize(), delay(500), dematerialize()); // call materialize and dematerialize to ensure delay even if an error is thrown (https://github.com/Reactive-Extensions/RxJS/issues/648);
     }
 
-    function error(message:string) {
+    function error(message: string) {
       return throwError({ status: 400, error: { message } })
         .pipe(materialize(), delay(500), dematerialize());
     }

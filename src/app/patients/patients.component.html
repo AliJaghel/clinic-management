@@ -1,37 +1,91 @@
 <div class="flex-wrap container py-5  patients-page">
-<div class="row justify-content-between h-100">
-  <div class="patients-list col-3 p-0">
-    <div class="table-actions w-100 d-flex flex-md-nowrap flex-sm-wrap">
-      <button class="w-100 text-primary" mat-raised-button>Add</button>
-      <button class="w-100 text-primary" mat-raised-button>Edit</button>
-      <button   class="w-100 text-danger" mat-raised-button>Delete</button>
+  <div class="row justify-content-between h-100">
+    <div class="patients-list col-3 p-0">
+      <div class="table-actions w-100 d-flex flex-md-nowrap flex-sm-wrap">
+        <button class="w-100 text-primary" mat-raised-button>Add</button>
+        <button class="w-100 text-primary" mat-raised-button>Edit</button>
+        <button class="w-100 text-danger" mat-raised-button>Delete</button>
+      </div>
+      <mat-form-field class="w-100">
+        <input matInput placeholder="Search..">
+      </mat-form-field>
+
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="code">
+          <mat-header-cell mat-header-cell *matHeaderCellDef> Code </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.code}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="fullName">
+          <mat-header-cell mat-header-cell *matHeaderCellDef> Full name </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.fullName}} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row matRipple (click)="onRowSelect(row)" [ngClass]="{'highlight-row': selectedRow == row}"
+          *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </table>
     </div>
-    <mat-form-field class="w-100">
-      <input matInput placeholder="Search..">
-    </mat-form-field>
+    <div class="  col-9">
 
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-      <ng-container matColumnDef="code"  >
-        <th mat-header-cell *matHeaderCellDef> Code </th>
-        <td mat-cell *matCellDef="let element"  matRipple > {{element.code}} </td>
-      </ng-container>
+      <div class="patient-form mx-1 p-3">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div class="row">
+            <div class="col-4">
 
-      <ng-container matColumnDef="fullName">
-        <th mat-header-cell *matHeaderCellDef > Full name </th>
-        <td mat-cell *matCellDef="let element" matRipple > {{element.fullName}} </td>
-      </ng-container>
+                <mat-form-field class="w-100">
+                  <mat-label>First Name</mat-label>
+                  <input formControlName="firstName" required matInput placeholder="FirstName">
+                </mat-form-field>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns" ></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
-    </table>
+                <div *ngIf="submitted && f['firstName'].errors" class="text-danger">
+                  <div *ngIf="f['firstName'].errors['required']">firstName is required</div>
+                </div>
+
+            </div>
+            <div class="col-4">
+
+                <mat-form-field class="w-100">
+                  <mat-label>Last Name</mat-label>
+                  <input formControlName="lastName" required matInput placeholder="Last Name">
+                </mat-form-field>
+
+                <div *ngIf="submitted && f['lastName'].errors" class="text-danger">
+                  <div *ngIf="f['lastName'].errors['required']">lastName is required</div>
+                </div>
+
+            </div>
+            <div class="col-4">
+
+                <mat-form-field class="w-100">
+                  <mat-label>Last Name</mat-label>
+                  <input formControlName="lastName" required matInput placeholder="Last Name">
+                </mat-form-field>
+
+                <div *ngIf="submitted && f['lastName'].errors" class="text-danger">
+                  <div *ngIf="f['lastName'].errors['required']">lastName is required</div>
+                </div>
+
+            </div>
+          </div>
+
+
+
+
+
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary">Register</button>
+            <button type="button" (click)="onReset()" class="btn btn-warning float-right">
+              Reset
+            </button>
+          </div>
+        </form>
+      </div>
+
+
+
+    </div>
   </div>
-
-  <div class="patient-form col-8">
-    test
-  </div>
-</div>
-
-
-
 </div>

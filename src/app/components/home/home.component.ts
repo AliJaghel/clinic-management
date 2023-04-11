@@ -6,12 +6,23 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { Router, RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatMiniFabButton } from '@angular/material/button';
-
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatListModule } from '@angular/material/list';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, RouterModule, SharedModule,],
+  imports: [
+    CommonModule,
+    RouterModule,
+    SharedModule,
+
+    MatListModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatToolbarModule],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   animations: [
