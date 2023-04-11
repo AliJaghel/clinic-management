@@ -1,6 +1,6 @@
-<mat-toolbar class="main-navbar position-relative">
+<mat-toolbar class="main-navbar position-relative " >
 
-  <button mat-mini-fab (click)="toggleMenu()" color="primary" style="margin: 10px;">
+  <button  mat-mini-fab (click)="toggleMenu()" color="primary" style="margin: 10px;">
     <mat-icon aria-label="Menu">menu</mat-icon>
   </button>
 
@@ -9,7 +9,7 @@
   </button>
 </mat-toolbar>
 
-<mat-drawer-container class="main-container">
+<mat-drawer-container  class="main-container " [ngClass]="{'home-backdrop': !isExpanded}">
   <mat-drawer [@slideInOut]="helpMenu" #drawer mode="over" disableClose="true" opened="true" class="main-sidenav">
 
     <mat-nav-list>
@@ -29,7 +29,7 @@
 
   </mat-drawer>
 
-  <div #sideNavContent class="main-sidenav-content  ">
+  <div  class="main-sidenav-content  ">
 
     <router-outlet class=""></router-outlet>
 

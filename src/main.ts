@@ -1,7 +1,24 @@
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { SharedModule } from 'src/app/shared.module';
+import { importProvidersFrom } from '@angular/core';
+import { AppComponent } from './app/app.component';
+import { bootstrapApplication } from '@angular/platform-browser';
+import { AuthenticationService } from './app/services/authentication.service';
+import { AuthGuard } from './app/helpers/auth.guard';
+import { mockBackendProvider } from './app/helpers/fake-backend/mock-backend';
+import { provideRouter } from '@angular/router';
+import { appRoutes } from './app/app-routing.module';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideHttpClient } from '@angular/common/http';
 
-import { AppModule } from './app/app.module';
+bootstrapApplication(AppComponent, {
 
+  providers: [AuthenticationService,
+    AuthGuard,
+    mockBackendProvider,
+    provideRouter(appRoutes),
+    provideAnimations(),
+    provideHttpClient(),
+    importProvidersFrom(SharedModule)
 
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+  ]
+}).catch((err) => console.error(err));

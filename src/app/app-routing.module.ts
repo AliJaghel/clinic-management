@@ -5,7 +5,7 @@ import { AuthGuard } from './helpers/auth.guard';
 import { PatientsComponent } from './patients/patients.component';
 
 
-const routes: Routes = [
+export const appRoutes: Routes = [
   {
     path: '', loadComponent: () => import('./components/home/home.component').then(mod => mod.HomeComponent), canActivate: [AuthGuard], data: { roles: ['Admin', 'User'] },
     children: [
@@ -17,8 +17,8 @@ const routes: Routes = [
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
+// @NgModule({
+//   imports: [RouterModule.forRoot()],
+//   exports: [RouterModule]
+// })
 export class AppRoutingModule { }

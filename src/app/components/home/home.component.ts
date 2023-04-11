@@ -4,12 +4,14 @@ import { Component, ElementRef, HostListener, ViewChild, inject } from '@angular
 import { CommonModule } from '@angular/common';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Router, RouterModule } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatMiniFabButton } from '@angular/material/button';
 
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule,RouterModule , SharedModule],
+  imports: [CommonModule, RouterModule, SharedModule,],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   animations: [
@@ -38,26 +40,24 @@ import { Router, RouterModule } from '@angular/router';
       transition('out => in', animate('100ms ease-in-out'))
     ])
   ],
-  providers:[AuthenticationService]
+  providers: [AuthenticationService]
 })
 export class HomeComponent {
-private authenticationService :AuthenticationService = inject(AuthenticationService);
-private router :Router = inject(Router);
+  private authenticationService: AuthenticationService = inject(AuthenticationService);
+  private router: Router = inject(Router);
   isExpanded = false;
   helpMenu = 'out'
-  @ViewChild('sideNavContent') sideNavContent!: ElementRef;
-
   toggleMenu(): void {
     this.helpMenu = this.helpMenu === 'out' ? 'in' : 'out';
     this.isExpanded = !this.isExpanded;
   }
- logout() {
-this.authenticationService .logout();
-this.router.navigate(['/login']);
-}
+  logout() {
+    this.authenticationService.logout();
+    this.router.navigate(['/login']);
+  }
   @HostListener('document:click', ['$event'])
   documentClick(event: any): void {
-    if (event.target == this.sideNavContent?.nativeElement) {
+    if (event.srcElement.classList.contains('mat-drawer-shown')) {
       this.isExpanded = false;
       this.helpMenu = 'out'
     }

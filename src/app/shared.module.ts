@@ -17,7 +17,7 @@ export function playerFactory() {
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule,
+   // CommonModule,
     MatInputModule,
     MatButtonModule,
     MatProgressSpinnerModule,

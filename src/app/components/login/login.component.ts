@@ -1,16 +1,17 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { AnimationOptions } from 'ngx-lottie';
+import { AnimationOptions, LottieModule } from 'ngx-lottie';
 import { SharedModule } from 'src/app/shared.module';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { LoginFormModel } from 'src/app/models/login-form.model';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, SharedModule, HttpClientModule],
-  providers: [AuthenticationService, HttpClient,],
+  imports: [CommonModule, SharedModule],
+  providers: [],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })

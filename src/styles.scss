@@ -47,11 +47,12 @@ input:-webkit-autofill:active {
   height: calc(100% - 64px); // navbar height
   background-color: var(--blue-light) !important;
   overflow: auto;
+  &.home-backdrop{
   .mat-drawer-backdrop.mat-drawer-shown {
     display: none !important;
     z-index: -1 !important;
   }
-
+  }
   .main-sidenav-content {
     width: calc(100vw - 80px);
     margin-left: auto;
