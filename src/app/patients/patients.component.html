@@ -1,17 +1,15 @@
-<div class="flex-wrap container py-5  patients-page">
+<div class="flex-wrap container py-3  patients-page">
   <div class="row justify-content-between h-100">
-    <div class="patients-list col-3 p-0">
+    <div class="patients-list col-3 p-0 default-border-radius">
       <div class="table-actions w-100 d-flex flex-md-nowrap flex-sm-wrap">
         <button class="w-100 text-primary" mat-raised-button>Add</button>
-        <button class="w-100 text-primary" mat-raised-button>Edit</button>
-        <button class="w-100 text-danger" mat-raised-button>Delete</button>
+        <button [disabled]="!selectedRow" class="w-100 text-primary" mat-raised-button>Edit</button>
+        <button [disabled]="!selectedRow" class="w-100 text-danger" mat-raised-button>Delete</button>
       </div>
       <mat-form-field class="w-100">
         <input matInput placeholder="Search..">
       </mat-form-field>
-
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
         <ng-container matColumnDef="code">
           <mat-header-cell mat-header-cell *matHeaderCellDef> Code </mat-header-cell>
           <mat-cell *matCellDef="let element"> {{element.code}} </mat-cell>
@@ -27,57 +25,42 @@
           *matRowDef="let row; columns: displayedColumns;"></mat-row>
       </table>
     </div>
-    <div class="  col-9">
-
-
-      <div class="patient-form mx-1 p-3">
-        <form [formGroup]="form" (ngSubmit)="onSubmit()">
-          <div class="row">
+    <div class="col-9">
+      <div class="patient-form mx-1 p-3 default-border-radius">
+        <form [formGroup]="form" class="h-100 d-flex flex-column align-items-start justify-content-between"
+          (ngSubmit)="onSubmit()">
+          <div class="row w-100">
             <div class="col-4">
-
-                <mat-form-field class="w-100">
-                  <mat-label>First Name</mat-label>
-                  <input formControlName="firstName" required matInput placeholder="FirstName">
-                </mat-form-field>
-
-                <div *ngIf="submitted && f['firstName'].errors" class="text-danger">
-                  <div *ngIf="f['firstName'].errors['required']">firstName is required</div>
-                </div>
-
+              <mat-form-field class="w-100" appearance="outline">
+                <mat-label>First Name</mat-label>
+                <input  formControlName="firstName" required matInput  placeholder="FirstName">
+              </mat-form-field>
+              <div *ngIf="submitted && f['firstName'].errors" class="text-danger">
+                <div *ngIf="f['firstName'].errors['required']">firstName is required</div>
+              </div>
             </div>
             <div class="col-4">
-
-                <mat-form-field class="w-100">
-                  <mat-label>Last Name</mat-label>
-                  <input formControlName="lastName" required matInput placeholder="Last Name">
-                </mat-form-field>
-
-                <div *ngIf="submitted && f['lastName'].errors" class="text-danger">
-                  <div *ngIf="f['lastName'].errors['required']">lastName is required</div>
-                </div>
-
+              <mat-form-field class="w-100" appearance="outline">
+                <mat-label>Last Name</mat-label>
+                <input formControlName="lastName" required matInput placeholder="Last Name">
+              </mat-form-field>
+              <div *ngIf="submitted && f['lastName'].errors" class="text-danger">
+                <div *ngIf="f['lastName'].errors['required']">lastName is required</div>
+              </div>
             </div>
             <div class="col-4">
-
-                <mat-form-field class="w-100">
-                  <mat-label>Last Name</mat-label>
-                  <input formControlName="lastName" required matInput placeholder="Last Name">
-                </mat-form-field>
-
-                <div *ngIf="submitted && f['lastName'].errors" class="text-danger">
-                  <div *ngIf="f['lastName'].errors['required']">lastName is required</div>
-                </div>
-
+              <mat-form-field class="w-100" appearance="outline">
+                <mat-label>Last Name</mat-label>
+                <input formControlName="lastName" required matInput placeholder="Last Name">
+              </mat-form-field>
+              <div *ngIf="submitted && f['lastName'].errors" class="text-danger">
+                <div *ngIf="f['lastName'].errors['required']">lastName is required</div>
+              </div>
             </div>
           </div>
-
-
-
-
-
           <div class="form-group">
-            <button type="submit" class="btn btn-primary">Register</button>
-            <button type="button" (click)="onReset()" class="btn btn-warning float-right">
+            <button mat-raised-button color="primary" type="submit" class="mx-1">Register</button>
+            <button mat-raised-button color="warn" type="button" (click)="onReset()" class="mx-1">
               Reset
             </button>
           </div>

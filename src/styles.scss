@@ -1,14 +1,33 @@
 @import "material-icons/iconfont/material-icons.css";
 
+
 :root {
   --cayne: #365cc1;
   --blue: #237fc3;
   --blue-light: #e5f8ff;
   --blue-light-1: #9fd2e5;
   --gray-light: #d2d2d2;
+  --red:rgb(224, 50, 50);
+
+  --color-danger:var(--red);
 
   --default-border-radius: 4px;
 }
+
+//mat input override
+.mdc-text-field--filled,
+.mdc-text-field--outlined,
+.mat-mdc-form-field-focus-overlay {
+  background-color: white !important;
+}
+.mdc-notched-outline > *{
+  border-color: rgb(218, 218, 218) !important;
+}
+.mdc-text-field--invalid .mdc-notched-outline > * {
+  border-color: var(--color-danger) !important;
+}
+
+
 
 html,
 body {
@@ -20,7 +39,6 @@ body {
   background-color: var(--blue-light-1);
 }
 
-/* Change the white to any color */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
@@ -47,11 +65,11 @@ input:-webkit-autofill:active {
   height: calc(100% - 64px); // navbar height
   background-color: var(--blue-light) !important;
   overflow: auto;
-  &.home-backdrop{
-  .mat-drawer-backdrop.mat-drawer-shown {
-    display: none !important;
-    z-index: -1 !important;
-  }
+  &.home-backdrop {
+    .mat-drawer-backdrop.mat-drawer-shown {
+      display: none !important;
+      z-index: -1 !important;
+    }
   }
   .main-sidenav-content {
     width: calc(100vw - 80px);

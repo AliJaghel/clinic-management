@@ -1,10 +1,5 @@
 .login-container {
-  ::ng-deep {
-    .mdc-text-field--filled,
-    .mat-mdc-form-field-focus-overlay {
-      background-color: transparent !important;
-    }
-  }
+
 
   color: var(--blue);
   font-family: "Changa", sans-serif;

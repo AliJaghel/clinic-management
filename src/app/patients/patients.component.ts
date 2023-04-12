@@ -63,12 +63,7 @@ export class PatientsComponent {
     { code: 2, 'fullName': 'Sarya Jaghel' },
     { code: 3, 'fullName': 'Ahmad Jaghel' },
     { code: 4, 'fullName': 'Ali Jaghel' },
-    { code: 5, 'fullName': 'Ali Jaghel' },
-    { code: 6, 'fullName': 'Ali Jaghel' },
-    { code: 7, 'fullName': 'Ali Jaghel' },
-    { code: 8, 'fullName': 'Ali Jaghel' },
-    { code: 9, 'fullName': 'Ali Jaghel' },
-    { code: 9, 'fullName': 'Ali Jaghel' },
+
 
 
   ]

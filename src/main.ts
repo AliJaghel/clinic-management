@@ -4,7 +4,7 @@ import { AppComponent } from './app/app.component';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { AuthenticationService } from './app/services/authentication.service';
 import { AuthGuard } from './app/helpers/auth.guard';
-import { mockBackendProvider } from './app/helpers/fake-backend/mock-backend';
+import { mockBackendProvider } from './app/helpers/fake-backend/mock-backend.interceptor';
 import { provideRouter } from '@angular/router';
 import { appRoutes } from './app/app-routing.module';
 import { provideAnimations } from '@angular/platform-browser/animations';
