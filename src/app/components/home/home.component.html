@@ -1,15 +1,21 @@
+<div class="home-contnet" [ngClass]="{'dark-theme': isDarkMode}">
 <mat-toolbar class="main-navbar position-relative ">
 
   <button mat-mini-fab (click)="toggleMenu()" color="primary" style="margin: 10px;">
     <mat-icon aria-label="Menu">menu</mat-icon>
   </button>
-
-  <button mat-mini-fab (click)="logout()" color="warn" style="margin-left: auto;">
+<div style="margin-left: auto;">
+  <button mat-mini-fab (click)="logout()" color="warn" >
     <mat-icon aria-label="Menu">logout</mat-icon>
   </button>
+  <mat-slide-toggle class="mx-4" [(ngModel)]="isDarkMode">  <mat-icon>bedtime</mat-icon></mat-slide-toggle>
+
+
+
+</div>
 </mat-toolbar>
 
-<mat-drawer-container class="main-container " [ngClass]="{'home-backdrop': !isExpanded}">
+<mat-drawer-container  class="main-container " [ngClass]="{'home-backdrop': !isExpanded}">
   <mat-drawer [@slideInOut]="helpMenu" #drawer mode="over" disableClose="true" opened="true" class="main-sidenav">
 
     <mat-nav-list>
@@ -34,3 +40,4 @@
   </div>
 
 </mat-drawer-container>
+</div>

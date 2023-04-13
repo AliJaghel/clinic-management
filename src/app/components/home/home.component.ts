@@ -1,16 +1,14 @@
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { SharedModule } from 'src/app/shared.module';
-import { Component, ElementRef, HostListener, ViewChild, inject } from '@angular/core';
+import { Component, HostListener, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Router, RouterModule } from '@angular/router';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatMiniFabButton } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
-
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -22,7 +20,8 @@ import { MatListModule } from '@angular/material/list';
     MatListModule,
     MatSidenavModule,
     MatIconModule,
-    MatToolbarModule],
+    MatToolbarModule,
+    MatSlideToggleModule],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   animations: [
@@ -57,6 +56,7 @@ export class HomeComponent {
   private authenticationService: AuthenticationService = inject(AuthenticationService);
   private router: Router = inject(Router);
   isExpanded = false;
+  isDarkMode = false;
   helpMenu = 'out'
   toggleMenu(): void {
     this.helpMenu = this.helpMenu === 'out' ? 'in' : 'out';
@@ -73,6 +73,7 @@ export class HomeComponent {
       this.helpMenu = 'out'
     }
   }
+
 
 }
 
