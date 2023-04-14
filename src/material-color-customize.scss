@@ -1,44 +1,42 @@
-@use 'sass:map';
-@use '@angular/material' as mat;
+@use "sass:map";
+@use "@angular/material" as mat;
 @include mat.core();
 
-$dark-primary-text :000000;
-$light-primary-text:#ffffff;
-
+$dark-primary-text: 000000;
+$light-primary-text: #ffffff;
 
 $app-blue-base: (
-    50 : #e0eef6,
-    100 : #9fd2e5,
-    200 : #80bada,
-    300 : #4d9ecb,
-    400 : #2689bf,
-    500 : #0074b4,
-    600 : #006cad,
-    700 : #0061a4,
-    800 : #00579c,
-    900 : #00448c,
-    A100 : #b8d5ff,
-    A200 : #85b7ff,
-    A400 : #5299ff,
-    A700 : #398aff,
-    contrast: (
-        50 : #000000,
-        100 : #000000,
-        200 : #000000,
-        300 : #000000,
-        400 : #ffffff,
-        500 : #ffffff,
-        600 : #ffffff,
-        700 : #ffffff,
-        800 : #ffffff,
-        900 : #ffffff,
-        A100 : #000000,
-        A200 : #000000,
-        A400 : #000000,
-        A700 : #ffffff,
-    )
+  50: #e0eef6,
+  100: #9fd2e5,
+  200: #80bada,
+  300: #4d9ecb,
+  400: #2689bf,
+  500: #0074b4,
+  600: #006cad,
+  700: #0061a4,
+  800: #00579c,
+  900: #00448c,
+  A100: #b8d5ff,
+  A200: #85b7ff,
+  A400: #5299ff,
+  A700: #398aff,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #ffffff,
+  ),
 );
-
 
 $app-navy-blue-base: (
   50: #e8eaed,
@@ -56,23 +54,22 @@ $app-navy-blue-base: (
   A400: #165eff,
   A700: #004dfc,
   contrast: (
-    50 : #000000,
-    100 : #000000,
-    200 : #000000,
-    300 : #000000,
-    400 : #ffffff,
-    500 : #ffffff,
-    600 : #ffffff,
-    700 : #ffffff,
-    800 : #ffffff,
-    900 : #ffffff,
-    A100 : #000000,
-    A200 : #000000,
-    A400 : #000000,
-    A700 : #ffffff,
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #ffffff,
   ),
 );
-
 
 $app-red-base: (
   50: #fcedea,
@@ -139,53 +136,58 @@ $app-gray-base: (
   ),
 );
 
-
 $app-primary-color-palette: mat.define-palette($app-blue-base) !default;
 $app-accent-color-palette: mat.define-palette($app-navy-blue-base) !default;
-$app-warn-color-palette: mat.define-palette($app-red-base, 900, 500, 700) !default;
+$app-warn-color-palette: mat.define-palette(
+  $app-red-base,
+  900,
+  500,
+  700
+) !default;
 $app-dark-color-palette: mat.define-palette($app-blue-base) !default;
-
-
 
 $app-primary: mat.define-palette($app-primary-color-palette);
 $app-dark-primary: mat.define-palette($app-dark-color-palette, 500);
-$app-accent: mat.define-palette($app-navy-blue-base,500);
+$app-accent: mat.define-palette($app-navy-blue-base, 500);
 
-$light-theme: mat.define-light-theme((
- color: (
-   primary: $app-primary,
-   accent: $app-accent,
- ),
- typography: mat.define-typography-config(),
- density: -2,
-));
+$light-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $app-primary,
+      accent: $app-accent,
+    ),
+    background: (
+      default: red,
+    ),
+    typography: mat.define-typography-config(),
+    density: -2,
+  )
+);
 
-$dark-theme: mat.define-dark-theme((
- color: (
-   primary: $app-dark-primary,
-   accent: $app-accent,
- ),
- typography: mat.define-typography-config(),
- density: -2,
-));
+$dark-theme: mat.define-dark-theme(
+  (
+    color: (
+      primary: $app-dark-primary,
+      accent: $app-accent,
+    ),
+    background: (
+      default: red,
+    ),
+    typography: mat.define-typography-config(),
+    density: -2,
+  )
+);
 
-
-// Set custom background color
-$custom-background-color: map_get($app-primary-color-palette, 500);
-
-$background: map-get($light-theme, background);
-$background: map_merge($background, (background: $custom-background-color));
-$background-color: map_get($app-primary-color-palette, 500);
-$background: map-get($light-theme, background);
-$background: map_merge($background, (background: $background-color));
-$light-theme: map_merge($light-theme, (background: $background));
-
+.mat-app-background {
+  $background: map-get($light-theme, background);
+  background-color: map-get($background, background);
+}
 
 @include mat.all-component-themes($light-theme);
 .dark-theme {
   @include mat.button-theme($dark-theme);
   @include mat.all-component-colors($dark-theme);
-}
 
+}
 
 

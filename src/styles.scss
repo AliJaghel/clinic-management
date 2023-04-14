@@ -1,44 +1,43 @@
+@use "@angular/material" as mat;
 @import "material-icons/iconfont/material-icons.css";
 @import "material-color-customize.scss";
 
 
 :root {
   --cayne: #365cc1;
-  --blue: #237fc3;
-  --blue-light: #e5f8ff;
-  --blue-light-1: #9fd2e5;
+  --blue: map-get(mat.get-color-from-palette($dark-theme, primary), 500);
+  --blue-light:  map-get(mat.get-color-from-palette($dark-theme, primary), 50);
+  --blue-light-1: map-get(mat.get-color-from-palette($dark-theme, primary), 100);
   --gray-light: #d2d2d2;
-  --red:rgb(224, 50, 50);
+  --red: rgb(224, 50, 50);
 
-  --color-danger:var(--red);
+  --color-danger: var(--red);
 
   --default-border-radius: 4px;
 }
+
 
 //mat input override
 .mdc-text-field--filled,
 .mdc-text-field--outlined,
 .mat-mdc-form-field-focus-overlay {
- // background-color: white !important;
+  background-color: white !important;
 }
-.mdc-notched-outline > *{
+.mdc-notched-outline > * {
   border-color: rgb(218, 218, 218) !important;
 }
 .mdc-text-field--invalid .mdc-notched-outline > * {
   border-color: var(--color-danger) !important;
 }
 
-
-
 html,
 body {
-
   height: 100%;
 }
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  ///background-color: var(--blue-light-1);
+  background-color: var(--blue-light-1);
 }
 
 input:-webkit-autofill,
@@ -49,7 +48,7 @@ input:-webkit-autofill:active {
 }
 
 .primary-blue-bg {
-//  background-color: var(--blue-light);
+    background-color: var(--blue-light);
 }
 
 .default-border-radius {
