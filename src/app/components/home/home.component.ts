@@ -8,7 +8,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { ThemePalette } from '@angular/material/core';
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -57,6 +58,7 @@ export class HomeComponent {
   private router: Router = inject(Router);
   isExpanded = false;
   isDarkMode = false;
+  primaryColor: ThemePalette = 'primary';
   helpMenu = 'out'
   toggleMenu(): void {
     this.helpMenu = this.helpMenu === 'out' ? 'in' : 'out';
@@ -74,7 +76,16 @@ export class HomeComponent {
     }
   }
 
+  onDarkModeChange() {
+    this.isDarkMode ? localStorage.setItem('darkMode', 'true') : localStorage.removeItem('darkMode')
+  }
 
+  ngOnInit(): void {
+    var isDarkMode = localStorage.getItem('darkMode');
+    if (isDarkMode) {
+      this.isDarkMode = true;
+    }
+  }
 }
 
 

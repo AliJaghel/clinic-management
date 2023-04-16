@@ -1,6 +1,9 @@
 <div class="flex-wrap container py-3  patients-page">
-  <div class="row justify-content-between h-100">
+  <h4 class=" page-title pb-2">Register a new patient</h4>
+  <div class="page-row row justify-content-between ">
+
     <div class="patients-list col-3 p-0 default-border-radius">
+
       <div class="table-actions w-100 d-flex flex-md-nowrap flex-sm-wrap">
         <button class="w-100 text-primary" mat-raised-button>Add</button>
         <button [disabled]="!selectedRow" class="w-100 text-primary" mat-raised-button>Edit</button>
@@ -25,15 +28,16 @@
           *matRowDef="let row; columns: displayedColumns;"></mat-row>
       </table>
     </div>
-    <div class="col-9">
+    <div class="col-9 ">
       <div class="patient-form mx-1 p-3 default-border-radius">
         <form [formGroup]="form" class="h-100 d-flex flex-column align-items-start justify-content-between"
           (ngSubmit)="onSubmit()">
           <div class="row w-100">
+            <h5 class="text-primary">patient infromation</h5>
             <div class="col-4">
               <mat-form-field class="w-100" appearance="outline">
                 <mat-label>First Name</mat-label>
-                <input  formControlName="firstName" required matInput  placeholder="FirstName">
+                <input formControlName="firstName" required matInput placeholder="FirstName">
               </mat-form-field>
               <div *ngIf="submitted && f['firstName'].errors" class="text-danger">
                 <div *ngIf="f['firstName'].errors['required']">firstName is required</div>

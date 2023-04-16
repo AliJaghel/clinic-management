@@ -60,9 +60,11 @@ export class PatientsComponent {
   displayedColumns = ['code', 'fullName'];
   dataSource = [
     { code: 1, 'fullName': 'Ali Jaghel' },
-    { code: 2, 'fullName': 'Sarya Jaghel' },
-    { code: 3, 'fullName': 'Ahmad Jaghel' },
-    { code: 4, 'fullName': 'Ali Jaghel' },
+    { code: 2, 'fullName': 'Test Jaghel' },
+    { code: 3, 'fullName': 'Test Jaghel' },
+    { code: 4, 'fullName': 'Test Jaghel' },
+    { code: 3, 'fullName': 'Test Jaghel' },
+    { code: 4, 'fullName': 'Test Jaghel' },
 
 
 

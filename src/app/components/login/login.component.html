@@ -6,14 +6,15 @@
 
     <div
       class="h-100 w-100 bg-white  d-flex flex-column align-items-center justify-content-center login-form-container">
-      <h3 class="logo-title mb-4">THE CLINIC MANAGEMENT</h3>
+      <h3 class="logo-title mb-5 text-uppercase">Care Compass</h3>
       <form #loginForm="ngForm" class="login-form d-flex flex-column p-2">
-        <mat-form-field>
+        <mat-form-field floatLabel="always">
           <mat-label>Username</mat-label>
           <input [disabled]="isLoading" [(ngModel)]="user.username" name="username" id="username" #username="ngModel"
             required matInput placeholder="Username">
+
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field floatLabel="always">
           <mat-label>Password</mat-label>
           <input [disabled]="isLoading" [(ngModel)]="user.password" name="password" id="password" required
             type="password" #password="ngModel" matInput placeholder="Password">

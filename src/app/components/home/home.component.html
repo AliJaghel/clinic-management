@@ -1,43 +1,41 @@
-<div class="home-contnet" [ngClass]="{'dark-theme': isDarkMode}">
-<mat-toolbar class="main-navbar position-relative ">
+<div class="home-contnet h-100" [ngClass]="{'dark-theme': isDarkMode}">
+  <mat-drawer-container class="main-container h-100 " [ngClass]="{'home-backdrop': !isExpanded}">
+    <mat-drawer [@slideInOut]="helpMenu" #drawer mode="over" disableClose="true" opened="true"
+      class="main-sidenav text-center ">
+      <button mat-mini-fab (click)="toggleMenu()" color="primary">
+        <mat-icon aria-label="Menu">menu</mat-icon>
+      </button>
+      <mat-nav-list>
+        <mat-list-item class="p-2" routerLink="/">
+          <div class="d-flex align-items-center  menu-list-item"    [ngClass]="isExpanded  ? 'justify-content-start' : 'justify-content-center'"  >
+            <mat-icon mat-list-icon>dashboard</mat-icon>
+            <p class="m-0 p-2" mat-line *ngIf="isExpanded" [@enterAnimation]>Management C</p>
+          </div>
+        </mat-list-item>
+        <mat-list-item class="p-2" routerLink="/patients">
+          <div class="d-flex align-items-center  menu-list-item  " [ngClass]="isExpanded  ? 'justify-content-start' : 'justify-content-center'">
+            <mat-icon mat-list-icon>people</mat-icon>
+            <p class="m-0 p-2" mat-line *ngIf="isExpanded" [@enterAnimation]>Patients</p>
+          </div>
+        </mat-list-item>
+      </mat-nav-list>
+    </mat-drawer>
 
-  <button mat-mini-fab (click)="toggleMenu()" color="primary" style="margin: 10px;">
-    <mat-icon aria-label="Menu">menu</mat-icon>
-  </button>
-<div style="margin-left: auto;">
-  <button mat-mini-fab (click)="logout()" color="warn" >
-    <mat-icon aria-label="Menu">logout</mat-icon>
-  </button>
-  <mat-slide-toggle class="mx-4" [(ngModel)]="isDarkMode">  <mat-icon>bedtime</mat-icon></mat-slide-toggle>
-
-  <h1 class="">This is a heading</h1>
-
-</div>
-</mat-toolbar>
-
-<mat-drawer-container  class="main-container " [ngClass]="{'home-backdrop': !isExpanded}">
-  <mat-drawer [@slideInOut]="helpMenu" #drawer mode="over" disableClose="true" opened="true" class="main-sidenav">
-
-    <mat-nav-list>
-      <mat-list-item class="p-2" routerLink="/">
-        <div class="d-flex align-items-center justify-content-start menu-list-item  ">
-          <mat-icon mat-list-icon>dashboard</mat-icon>
-          <p class="m-0 p-2" mat-line *ngIf="isExpanded" [@enterAnimation]>Management C</p>
+    <div class="main-sidenav-content h-100 d-flex flex-column ">
+      <mat-toolbar class="main-navbar position-relative  align-self-center">
+        <div style="margin-left: auto;">
+          <button mat-mini-fab (click)="logout()" color="warn">
+            <mat-icon aria-label="Menu">logout</mat-icon>
+          </button>
+          <mat-slide-toggle class="mx-4" [(ngModel)]="isDarkMode" (change)="onDarkModeChange()">
+            <mat-icon>bedtime</mat-icon></mat-slide-toggle>
         </div>
-      </mat-list-item>
-      <mat-list-item class="p-2" routerLink="/patients">
-        <div class="d-flex align-items-center justify-content-start menu-list-item  ">
-          <mat-icon mat-list-icon>people</mat-icon>
-          <p class="m-0 p-2" mat-line *ngIf="isExpanded" [@enterAnimation]>Patients</p>
-        </div>
-      </mat-list-item>
-    </mat-nav-list>
+      </mat-toolbar>
 
-  </mat-drawer>
+      <div class="h-100">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
 
-  <div class="main-sidenav-content">
-    <router-outlet class=""></router-outlet>
-  </div>
-
-</mat-drawer-container>
+  </mat-drawer-container>
 </div>

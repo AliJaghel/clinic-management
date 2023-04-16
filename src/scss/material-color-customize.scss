@@ -1,9 +1,14 @@
 @use "sass:map";
 @use "@angular/material" as mat;
-@include mat.core();
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins";
 
+@include mat.core();
+mat.$theme-ignore-duplication-warnings: true;
 $dark-primary-text: 000000;
 $light-primary-text: #ffffff;
+
 
 $app-blue-base: (
   50: #e0eef6,
@@ -103,38 +108,6 @@ $app-red-base: (
     A700: $dark-primary-text,
   ),
 );
-$app-gray-base: (
-  50: #fdfdfd,
-  100: #fafafa,
-  200: #f6f6f6,
-  300: #f2f2f2,
-  400: #f0f0f0,
-  500: #ededed,
-  600: #ebebeb,
-  700: #e8e8e8,
-  800: #e5e5e5,
-  900: #e0e0e0,
-  A100: #ffffff,
-  A200: #ffffff,
-  A400: #ffffff,
-  A700: #ffffff,
-  contrast: (
-    50: $dark-primary-text,
-    100: $dark-primary-text,
-    200: $dark-primary-text,
-    300: $dark-primary-text,
-    400: $dark-primary-text,
-    500: $dark-primary-text,
-    600: $dark-primary-text,
-    700: $dark-primary-text,
-    800: $dark-primary-text,
-    900: $dark-primary-text,
-    A100: $dark-primary-text,
-    A200: $dark-primary-text,
-    A400: $dark-primary-text,
-    A700: $dark-primary-text,
-  ),
-);
 
 $app-primary-color-palette: mat.define-palette($app-blue-base) !default;
 $app-accent-color-palette: mat.define-palette($app-navy-blue-base) !default;
@@ -150,14 +123,12 @@ $app-primary: mat.define-palette($app-primary-color-palette);
 $app-dark-primary: mat.define-palette($app-dark-color-palette, 500);
 $app-accent: mat.define-palette($app-navy-blue-base, 500);
 
+
 $light-theme: mat.define-light-theme(
   (
     color: (
       primary: $app-primary,
       accent: $app-accent,
-    ),
-    background: (
-      default: red,
     ),
     typography: mat.define-typography-config(),
     density: -2,
@@ -170,24 +141,36 @@ $dark-theme: mat.define-dark-theme(
       primary: $app-dark-primary,
       accent: $app-accent,
     ),
-    background: (
-      default: red,
-    ),
     typography: mat.define-typography-config(),
     density: -2,
   )
 );
 
-.mat-app-background {
-  $background: map-get($light-theme, background);
-  background-color: map-get($background, background);
-}
+
+
 
 @include mat.all-component-themes($light-theme);
 .dark-theme {
   @include mat.button-theme($dark-theme);
   @include mat.all-component-colors($dark-theme);
-
 }
 
 
+
+//varibles
+$primary_blue :map-get(mat.get-color-from-palette($dark-theme, primary), 500);
+$primary_blue-light :map-get(mat.get-color-from-palette($dark-theme, primary), 100);
+$primary_blue-lighter :map-get(mat.get-color-from-palette($dark-theme, primary), 50);
+
+
+
+//bootsrap customize
+
+$theme-colors: map-merge(
+  $theme-colors,
+  (
+    "primary": $primary_blue,
+  )
+);
+
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
