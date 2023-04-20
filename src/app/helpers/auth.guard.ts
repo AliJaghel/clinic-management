@@ -13,7 +13,6 @@ export class AuthGuard implements CanActivate {
 
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-
     if (this.authenticationService.isLoggedIn) {
       if (route.data['roles'] && route.data['roles'].indexOf(localStorage.getItem('userRole')) === -1) {
         this.router.navigate(['/']);

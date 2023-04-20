@@ -1,0 +1,9 @@
+{
+  "Patient infromation": "Patient infromation",
+  "requiredFieldErrMsg": "This field is required",
+  "firstName": "First name",
+  "lastName": "Last name",
+  "gender": "Gender",
+  "Male": "Male",
+  "Female": "Female"
+}

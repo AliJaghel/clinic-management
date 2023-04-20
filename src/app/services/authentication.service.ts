@@ -1,6 +1,6 @@
 import { Inject, Injectable, inject } from '@angular/core';
 import { BaseService } from './base.service';
-import { Observable, Subject, tap } from 'rxjs';
+import { Observable, Subject, of, tap } from 'rxjs';
 import { LoginFormModel } from '../models/login-form.model';
 import { environment } from 'src/environments/environment';
 import { User } from '../models/user.model';
@@ -18,7 +18,7 @@ export class AuthenticationService extends BaseService {
     return this.currentUser;
   }
   public get isLoggedIn(): boolean {
-    return !!localStorage.getItem('token') && !!localStorage.getItem('userRole');
+    return this.getAccessToken() != '' && !!localStorage.getItem('userRole');
   }
 
   login(loginForm: LoginFormModel): Observable<any> {
@@ -37,4 +37,17 @@ export class AuthenticationService extends BaseService {
     this.loginSubject.next(false);
   }
 
+  getLoggedInUser(): Observable<User> {
+    var id = this.getAccessToken().split('.')[1];
+    if (id)
+      return this.http.get<any>(environment.apiUrl + `/api/` + this.baseName + `/` + id)
+    else
+      return of()
+  }
+
+  getAccessToken(): string {
+    const item = localStorage.getItem('token');
+    if (item === null) return '';
+    else return item;
+  }
 }

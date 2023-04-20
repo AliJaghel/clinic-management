@@ -1,4 +1,35 @@
-.main-navbar{
-  width:90%;
-//  margin:auto 0 ;
+.home-contnet{
+
+.main-sidenav-content {
+  width: calc(100vw - 80px);
+  margin-left: auto;
+  overflow: auto;
+}
+&[dir="rtl"] .main-sidenav-content {
+  margin-left: 0;
+  margin-right: auto;
+  }
+
+.main-sidenav {
+  min-width: 70px;
+  padding: 8px;
+}
+
+.menu-list-item  {
+  color: var(--blue) !important;
+}
+.active.mdc-list-item, .mdc-list-item:hover{
+  background-color:var(--blue-light-1)!important;
+  -webkit-tap-highlight-color:var(--blue-light-1)!important;
+  border: solid 0;
+  border-bottom: solid 2px;
+  border-color: var(--blue);
+  padding-bottom: 6px!important;
+}
+
+
+.mdc-list-item:focus::before{
+background-color: inherit!important;
+opacity: 0;
+}
 }

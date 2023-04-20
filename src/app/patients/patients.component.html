@@ -1,9 +1,7 @@
-<div class="flex-wrap container py-3  patients-page">
-  <h4 class=" page-title pb-2">Register a new patient</h4>
-  <div class="page-row row justify-content-between ">
+<div class="flex-wrap container py-3  patients-page d-flex">
+  <div class="row justify-content-between w-100 ">
 
     <div class="patients-list col-3 p-0 default-border-radius">
-
       <div class="table-actions w-100 d-flex flex-md-nowrap flex-sm-wrap">
         <button class="w-100 text-primary" mat-raised-button>Add</button>
         <button [disabled]="!selectedRow" class="w-100 text-primary" mat-raised-button>Edit</button>
@@ -29,38 +27,41 @@
       </table>
     </div>
     <div class="col-9 ">
-      <div class="patient-form mx-1 p-3 default-border-radius">
-        <form [formGroup]="form" class="h-100 d-flex flex-column align-items-start justify-content-between"
+      <div class="patient-form mx-1 p-3 default-border-radius d-flex">
+        <form [formGroup]="patientForm" class="w-100 d-flex flex-column align-items-start justify-content-between"
           (ngSubmit)="onSubmit()">
           <div class="row w-100">
-            <h5 class="text-primary">patient infromation</h5>
-            <div class="col-4">
+            <h5 class="text-primary mb-3">{{'Patient infromation'| translate}}</h5>
+
+            <div class="col-12  col-lg-4 col-sm-6">
               <mat-form-field class="w-100" appearance="outline">
-                <mat-label>First Name</mat-label>
+                <mat-label>{{'firstName' | translate}}</mat-label>
                 <input formControlName="firstName" required matInput placeholder="FirstName">
               </mat-form-field>
               <div *ngIf="submitted && f['firstName'].errors" class="text-danger">
-                <div *ngIf="f['firstName'].errors['required']">firstName is required</div>
+                <div *ngIf="f['firstName'].errors['required']">{{'requiredFieldErrMsg'| translate}}</div>
               </div>
             </div>
-            <div class="col-4">
+            <div class="col-12  col-lg-4 col-sm-6">
               <mat-form-field class="w-100" appearance="outline">
-                <mat-label>Last Name</mat-label>
-                <input formControlName="lastName" required matInput placeholder="Last Name">
+                <mat-label>{{'lastName' | translate}}</mat-label>
+                <input formControlName="lastName" required matInput placeholder="lastName">
               </mat-form-field>
               <div *ngIf="submitted && f['lastName'].errors" class="text-danger">
-                <div *ngIf="f['lastName'].errors['required']">lastName is required</div>
+                <div *ngIf="f['lastName'].errors['required']">{{'requiredFieldErrMsg'| translate}}</div>
               </div>
             </div>
-            <div class="col-4">
-              <mat-form-field class="w-100" appearance="outline">
-                <mat-label>Last Name</mat-label>
-                <input formControlName="lastName" required matInput placeholder="Last Name">
-              </mat-form-field>
-              <div *ngIf="submitted && f['lastName'].errors" class="text-danger">
-                <div *ngIf="f['lastName'].errors['required']">lastName is required</div>
+            <div class="col-12  col-lg-4 col-sm-6">
+              <mat-label>{{'gender' | translate}}</mat-label>
+              <mat-radio-group color="primary" required formControlName="gender" aria-label="Select gender" placeholder="gender">
+                <mat-radio-button value="1">{{'Male'|translate}}</mat-radio-button>
+                <mat-radio-button value="0">{{'Female'|translate}}</mat-radio-button>
+              </mat-radio-group>
+              <div *ngIf="submitted && f['gender'].errors" class="text-danger">
+                <div *ngIf="f['gender'].errors['required']">{{'requiredFieldErrMsg'| translate}}</div>
               </div>
             </div>
+
           </div>
           <div class="form-group">
             <button mat-raised-button color="primary" type="submit" class="mx-1">Register</button>

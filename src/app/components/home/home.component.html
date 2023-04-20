@@ -1,5 +1,6 @@
-<div class="home-contnet h-100" [ngClass]="{'dark-theme': isDarkMode}">
-  <mat-drawer-container class="main-container h-100 " [ngClass]="{'home-backdrop': !isExpanded}">
+<div [dir]="currentLanguage =='en' ? 'ltr':'rtl'" class="home-contnet h-100 "
+  [ngClass]="isDarkMode ? 'dark-theme': 'light-theme'">
+  <mat-drawer-container class="main-container h-100  " [ngClass]="{'home-backdrop': !isExpanded}">
     <mat-drawer [@slideInOut]="helpMenu" #drawer mode="over" disableClose="true" opened="true"
       class="main-sidenav text-center ">
       <button mat-mini-fab (click)="toggleMenu()" color="primary">
@@ -7,28 +8,89 @@
       </button>
       <mat-nav-list>
         <mat-list-item class="p-2" routerLink="/">
-          <div class="d-flex align-items-center  menu-list-item"    [ngClass]="isExpanded  ? 'justify-content-start' : 'justify-content-center'"  >
+          <div class="d-flex align-items-center  menu-list-item"
+            [ngClass]="isExpanded  ? 'justify-content-start' : 'justify-content-center'">
             <mat-icon mat-list-icon>dashboard</mat-icon>
+            <p class="m-0 p-2" mat-line *ngIf="isExpanded" [@enterAnimation]>{{'c' | translate}}</p>
+          </div>
+        </mat-list-item>
+        <mat-list-item class="p-2" routerLink="/patients" routerLinkActive="active">
+          <div class="d-flex align-items-center  menu-list-item  "
+            [ngClass]="isExpanded  ? 'justify-content-start' : 'justify-content-center'">
+            <mat-icon mat-list-icon>people</mat-icon>
+            <p class="m-0 p-2" mat-line *ngIf="isExpanded" [@enterAnimation]>Patients</p>
+          </div>
+        </mat-list-item>
+        <mat-list-item class="p-2" routerLink="/">
+          <div class="d-flex align-items-center  menu-list-item"
+            [ngClass]="isExpanded  ? 'justify-content-start' : 'justify-content-center'">
+            <mat-icon mat-list-icon>settings</mat-icon>
             <p class="m-0 p-2" mat-line *ngIf="isExpanded" [@enterAnimation]>Management C</p>
           </div>
         </mat-list-item>
-        <mat-list-item class="p-2" routerLink="/patients">
-          <div class="d-flex align-items-center  menu-list-item  " [ngClass]="isExpanded  ? 'justify-content-start' : 'justify-content-center'">
-            <mat-icon mat-list-icon>people</mat-icon>
-            <p class="m-0 p-2" mat-line *ngIf="isExpanded" [@enterAnimation]>Patients</p>
+        <mat-list-item class="p-2" routerLink="/">
+          <div class="d-flex align-items-center  menu-list-item"
+            [ngClass]="isExpanded  ? 'justify-content-start' : 'justify-content-center'">
+            <mat-icon mat-list-icon>lock</mat-icon>
+            <p class="m-0 p-2" mat-line *ngIf="isExpanded" [@enterAnimation]>Management C</p>
+          </div>
+        </mat-list-item>
+        <mat-list-item class="p-2" routerLink="/">
+          <div class="d-flex align-items-center  menu-list-item"
+            [ngClass]="isExpanded  ? 'justify-content-start' : 'justify-content-center'">
+            <mat-icon mat-list-icon>check</mat-icon>
+            <p class="m-0 p-2" mat-line *ngIf="isExpanded" [@enterAnimation]>Management C</p>
           </div>
         </mat-list-item>
       </mat-nav-list>
     </mat-drawer>
 
     <div class="main-sidenav-content h-100 d-flex flex-column ">
-      <mat-toolbar class="main-navbar position-relative  align-self-center">
-        <div style="margin-left: auto;">
-          <button mat-mini-fab (click)="logout()" color="warn">
-            <mat-icon aria-label="Menu">logout</mat-icon>
-          </button>
-          <mat-slide-toggle class="mx-4" [(ngModel)]="isDarkMode" (change)="onDarkModeChange()">
+      <mat-toolbar class="main-navbar position-relative  align-self-center d-flex justify-content-between">
+        <h4 class="logo-title text-primary text-uppercase">Care Compass</h4>
+
+        <div class="d-flex align-items-center">
+          <mat-slide-toggle class="mx-2" [(ngModel)]="isDarkMode" (change)="onDarkModeChange()">
             <mat-icon>bedtime</mat-icon></mat-slide-toggle>
+
+          <!-- <button mat-icon-button [matMenuTriggerFor]="langMenu" class="mx-2">
+            <mat-icon>translate</mat-icon>
+          </button> -->
+
+          <button mat-button [matMenuTriggerFor]="userMenu" *ngIf="currentUser">
+            {{currentUser.firstName}}
+            <img width="40px" [src]="currentUser.imageUrl ? currentUser.imageUrl : 'assets/icons/ic-person_avatar.png'" alt="">
+            <mat-icon>arrow_drop_down</mat-icon>
+
+          </button>
+
+
+          <mat-menu #userMenu="matMenu"  xPosition="after">
+            <button mat-menu-item  [matMenuTriggerFor]="langMenu" >
+              <mat-icon>translate</mat-icon>
+              language
+            </button>
+
+            <button mat-menu-item (click)="logout()" color="warn" >
+              logout
+              <mat-icon aria-label="Menu" class="text-danger">logout</mat-icon>
+            </button>
+          </mat-menu>
+          <mat-menu #langMenu="matMenu">
+            <button mat-menu-item (click)="onLanguageChange('en')">
+              <img src="assets/icons/ic-united-kingdom.png" width="20px" alt="united-kingdom-flag" class="mx-2">
+              <span>En</span>
+            </button>
+            <button mat-menu-item (click)="onLanguageChange('ar')">
+              <img src="assets/icons/ic-united-arab-emirates.png" width="20px" alt="united-arab-emirates-flag"
+                class="mx-2">
+              <span>Ar</span>
+            </button>
+          </mat-menu>
+          <!--
+          <button mat-mini-fab (click)="logout()" color="warn"  class="mx-2">
+            <mat-icon aria-label="Menu">logout</mat-icon>
+          </button> -->
         </div>
       </mat-toolbar>
 

@@ -5,5 +5,6 @@ export class User {
   password!: string;
   firstName!: string;
   lastName!: string;
+  imageUrl?: string |null;
   role!: Role;
 }

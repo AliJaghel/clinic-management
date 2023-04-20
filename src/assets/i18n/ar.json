@@ -1,0 +1,9 @@
+{
+  "Patient infromation": "معلومات المريض",
+  "requiredFieldErrMsg": "هذا الحقل مطلوب",
+  "firstName": "الاسم الأول",
+  "lastName": "الاسم الثاني",
+  "gender": "الجنس",
+  "Male": "ذكر",
+  "Female": "انثى"
+}

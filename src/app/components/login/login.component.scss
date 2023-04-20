@@ -1,13 +1,20 @@
 .login-container {
-
-
   color: var(--blue);
   font-family: "Changa", sans-serif;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 
+
+  input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+
   .logo-title {
     border: solid 2px;
     padding: 8px;
+    padding-bottom: 0;
     box-shadow: rgb(38 132 161 / 45%) 0px 25px 20px -20px;
     border-bottom: solid 8px;
   }

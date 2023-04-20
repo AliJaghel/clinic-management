@@ -27,6 +27,18 @@ export class MockBackendInterceptor implements HttpInterceptor {
           return MockBackendControllers.user.getUsers();
         case url.match(/\/users\/\d+$/) && method === 'GET':
           return MockBackendControllers.user.getUserById();
+        //patients
+        case url.endsWith('/patients') && method === 'GET':
+          return MockBackendControllers.patients.getAll();
+        case url.match(/\/patients\/\d+$/) && method === 'GET':
+          return MockBackendControllers.patients.getById();
+        case url.endsWith('/patients') && method === 'POST':
+          return MockBackendControllers.patients.create(body);
+          case url.match(/\/patients\/\d+$/) && method === 'PUT':
+            return MockBackendControllers.patients.update(body);
+            case url.match(/\/patients\/\d+$/) && method === 'DELETE':
+              return MockBackendControllers.patients.delete();
+
         default:
           // pass through any requests not handled above
           return next.handle(request);
