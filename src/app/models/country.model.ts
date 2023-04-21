@@ -1,7 +1,7 @@
 export class Country {
   id!: number;
-  ArName!: string;
-  EnName!: string;
+  arName!: string;
+  enName!: string;
 }
 
 

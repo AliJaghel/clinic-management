@@ -5,18 +5,36 @@ import { MatTableModule } from '@angular/material/table';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { PatientService } from '../services/patient.services';
 import { TranslateModule } from '@ngx-translate/core';
-import {MatRadioModule} from '@angular/material/radio';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatSelectModule } from '@angular/material/select';
+
+import { City } from '../models/city.model';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @Component({
   selector: 'app-patients',
   standalone: true,
-  imports: [CommonModule, SharedModule, MatTableModule,MatRadioModule, ReactiveFormsModule,TranslateModule],
+  imports: [
+    CommonModule,
+    SharedModule,
+
+    MatTableModule,
+    MatRadioModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSelectModule,
+
+    ReactiveFormsModule,
+    TranslateModule],
   templateUrl: './patients.component.html',
   styleUrls: ['./patients.component.scss'],
-  providers:[PatientService]
+  providers: [PatientService]
 })
 export class PatientsComponent {
-  private patientService:PatientService= inject(PatientService);
+  private patientService: PatientService = inject(PatientService);
+
+  cities: City[] = [{ id: 1, arName: 'Damascus', enName: 'Damascus', countryId: 1 }]
   selectedRow!: any;
   // form: FormGroup = new FormGroup({
   //   firstName: new FormControl(''),
@@ -68,6 +86,7 @@ export class PatientsComponent {
 
   onSubmit(): void {
     this.submitted = true;
+    console.log(this.patientForm.value);
 
     if (this.patientForm.invalid) {
       return;
