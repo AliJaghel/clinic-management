@@ -10,6 +10,7 @@ export var databaseTables: { users: User[], patients: Patient[] } = {
   patients: [
   {
     fullName:'',
+    code:"p-2",
     id: 1,
     firstName: "John",
     lastName: "Doe",
@@ -37,6 +38,7 @@ export var databaseTables: { users: User[], patients: Patient[] } = {
   },
   {
     id: 2,
+    code:"p-1",
     fullName:'',
     firstName: "Jane",
     lastName: "Smith",

@@ -3,6 +3,7 @@ import { PatientInsurance } from "./patient-insurance.model";
 
 export class Patient {
   id!: number;
+  code!: string;
   firstName!: string;
   lastName!: string;
   gender!: number;

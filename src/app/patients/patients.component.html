@@ -10,15 +10,15 @@
       <mat-form-field class="w-100">
         <input matInput placeholder="Search..">
       </mat-form-field>
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <table mat-table [dataSource]="patientService.getAll()" class="mat-elevation-z8">
         <ng-container matColumnDef="code">
-          <mat-header-cell mat-header-cell *matHeaderCellDef> Code </mat-header-cell>
+          <mat-header-cell mat-header-cell *matHeaderCellDef> {{"Code"| translate}} </mat-header-cell>
           <mat-cell *matCellDef="let element"> {{element.code}} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="fullName">
-          <mat-header-cell mat-header-cell *matHeaderCellDef> Full name </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.fullName}} </mat-cell>
+          <mat-header-cell mat-header-cell *matHeaderCellDef> {{"fullName"| translate}}</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.firstName +' '+element.lastName}} </mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
@@ -28,186 +28,8 @@
     </div>
     <div class="col-9 ">
       <div class="patient-form mx-1 p-3 default-border-radius d-flex">
-        <form [formGroup]="patientForm" class="w-100 d-flex flex-column align-items-start justify-content-between"
-          (ngSubmit)="onSubmit()">
-          <div class="row w-100">
-            <h5 class="text-primary mb-3">{{'Patient infromation'| translate}}</h5>
-
-            <!-- First Name -->
-            <div class="col-12  col-lg-4 col-sm-6">
-              <mat-form-field class="w-100" appearance="outline">
-                <mat-label>{{'firstName' | translate}}</mat-label>
-                <input formControlName="firstName" required matInput placeholder="firstName">
-              </mat-form-field>
-              <div *ngIf="submitted && f['firstName'].errors" class="text-danger">
-                <div *ngIf="f['firstName'].errors['required']">{{'requiredFieldErrMsg'| translate}}</div>
-              </div>
-            </div>
-
-            <!-- Last Name -->
-            <div class="col-12  col-lg-4 col-sm-6">
-              <mat-form-field class="w-100" appearance="outline">
-                <mat-label>{{'lastName' | translate}}</mat-label>
-                <input formControlName="lastName" required matInput placeholder="lastName">
-              </mat-form-field>
-              <div *ngIf="submitted && f['lastName'].errors" class="text-danger">
-                <div *ngIf="f['lastName'].errors['required']">{{'requiredFieldErrMsg'| translate}}</div>
-              </div>
-            </div>
-
-            <!-- Gender -->
-            <div class="col-12  col-lg-4 col-sm-6">
-              <mat-label>{{'gender' | translate}}</mat-label>
-              <mat-radio-group color="primary" required formControlName="gender" aria-label="Select gender"
-                placeholder="gender">
-                <mat-radio-button value="1">{{'Male'|translate}}</mat-radio-button>
-                <mat-radio-button value="0">{{'Female'|translate}}</mat-radio-button>
-              </mat-radio-group>
-              <div *ngIf="submitted && f['gender'].errors" class="text-danger">
-                <div *ngIf="f['gender'].errors['required']">{{'requiredFieldErrMsg'| translate}}</div>
-              </div>
-            </div>
-
-            <!-- Marital Status -->
-            <div class="col-12  col-lg-4 col-sm-6">
-              <mat-form-field class="w-100" appearance="outline">
-                <mat-label>{{'maritalStatus' | translate}}</mat-label>
-                <input formControlName="maritalStatus" matInput placeholder="maritalStatus">
-              </mat-form-field>
-            </div>
-
-            <!-- Birth Date -->
-            <div class="col-12  col-lg-4 col-sm-6">
-              <mat-form-field class="w-100" appearance="outline">
-                <mat-label>{{'birthDate' | translate}}</mat-label>
-                <input formControlName="birthDate" required matInput [matDatepicker]="picker" placeholder="birthDate">
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-              </mat-form-field>
-              <div *ngIf="submitted && f['birthDate'].errors" class="text-danger">
-                <div *ngIf="f['birthDate'].errors['required']">{{'requiredFieldErrMsg'| translate}}</div>
-              </div>
-            </div>
-            <div class="col-12">
-              <h5 class="text-primary mb-3">{{'addressInformation'| translate}}</h5>
-            </div>
-            <div formGroupName="address" class="row">
-              <div class="col-12 col-lg-6">
-                <mat-form-field class="w-100" appearance="outline">
-                  <mat-label>{{'street' | translate}}</mat-label>
-                  <input formControlName="street" required matInput placeholder="street">
-                </mat-form-field>
-              </div>
-              <!-- <div *ngIf="submitted && patientForm.get('address.street').errors" class="text-danger">
-      <div *ngIf="patientForm.get('address.street').errors['required']">{{'requiredFieldErrMsg' | translate}}</div>
-    </div>  -->
-
-              <div class="col-12 col-md-6">
-                <mat-form-field class="w-100" appearance="outline">
-                  <mat-label>{{ 'cellPhone' | translate }}</mat-label>
-                  <input formControlName="cellPhone" required matInput placeholder="{{ 'cellPhone' | translate }}">
-                </mat-form-field>
-                <!-- <div *ngIf="submitted && f['address']['cellPhone'].errors" class="text-danger">
-      <div *ngIf="f['address']['cellPhone'].errors['required']">{{ 'requiredFieldErrMsg' | translate }}</div>
-    </div> -->
-              </div>
-
-              <div class="col-12 col-md-6">
-                <mat-form-field class="w-100" appearance="outline">
-                  <mat-label>{{ 'homePhone' | translate }}</mat-label>
-                  <input formControlName="homePhone" required matInput placeholder="{{ 'homePhone' | translate }}">
-                </mat-form-field>
-                <!-- <div *ngIf="submitted && f['address']['homePhone'].errors" class="text-danger">
-      <div *ngIf="f['address']['homePhone'].errors['required']">{{ 'requiredFieldErrMsg' | translate }}</div>
-    </div> -->
-              </div>
-
-              <div class="col-12 col-md-6">
-                <mat-form-field class="w-100" appearance="outline">
-                  <mat-label>{{ 'emergencyContactName' | translate }}</mat-label>
-                  <input formControlName="emergencyContactName" matInput
-                    placeholder="{{ 'emergencyContactName' | translate }}">
-                </mat-form-field>
-              </div>
-
-              <div class="col-12 col-md-6">
-                <mat-form-field class="w-100" appearance="outline">
-                  <mat-label>{{ 'emergencyContactPhoneNumber' | translate }}</mat-label>
-                  <input formControlName="emergencyContactPhoneNumber" matInput
-                    placeholder="{{ 'emergencyContactPhoneNumber' | translate }}">
-                </mat-form-field>
-              </div>
-
-              <div class="col-12 col-md-6">
-                <mat-form-field class="w-100" appearance="outline">
-                  <mat-label>{{ 'city' | translate }}</mat-label>
-                  <mat-select formControlName="cityId" required>
-                    <mat-option *ngFor="let city of cities" [value]="city.id">{{ city.arName }}</mat-option>
-                  </mat-select>
-                </mat-form-field>
-                <!-- <div *ngIf="submitted && f['address']['cityId'].errors" class="text-danger">
-      <div *ngIf="f['address']['cityId'].errors['required']">{{ 'requiredFieldErrMsg' | translate }}</div>
-    </div> -->
-              </div>
-            </div>
-            <div formGroupName="patientInsurance" class="row">
-              <h5 class="text-primary mb-3">{{'insuranceInfo'| translate}}</h5>
-              <div class="col-12 col-md-6">
-                <mat-form-field class="w-100" appearance="outline">
-                  <mat-label>{{ 'insuranceCo' | translate }}</mat-label>
-                  <input formControlName="insuranceCo" matInput placeholder="{{ 'insuranceCo' | translate }}">
-                </mat-form-field>
-              </div>
-
-              <div class="col-12 col-md-6">
-                <mat-form-field class="w-100" appearance="outline">
-                  <mat-label>{{ 'insurancePhone' | translate }}</mat-label>
-                  <input formControlName="insurancePhone" matInput placeholder="{{ 'insurancePhone' | translate }}">
-                </mat-form-field>
-              </div>
-
-              <div class="col-12 col-md-6">
-                <mat-form-field class="w-100" appearance="outline">
-                  <mat-label>{{ 'policyNo' | translate }}</mat-label>
-                  <input formControlName="policyNo" matInput placeholder="{{ 'policyNo' | translate }}">
-                </mat-form-field>
-              </div>
-
-              <div class="col-12 col-md-6">
-                <mat-form-field class="w-100" appearance="outline">
-                  <mat-label>{{ 'groupNo' | translate }}</mat-label>
-                  <input formControlName="groupNo" matInput placeholder="{{ 'groupNo' | translate }}">
-                </mat-form-field>
-              </div>
-
-              <div class="col-12 col-md-6">
-                <mat-form-field class="w-100" appearance="outline">
-                  <mat-label>{{ 'subscriberName' | translate }}</mat-label>
-                  <input formControlName="subscriberName" matInput placeholder="{{ 'subscriberName' | translate }}">
-                </mat-form-field>
-              </div>
-
-              <div class="col-12 col-md-6">
-                <mat-form-field class="w-100" appearance="outline">
-                  <mat-label>{{ 'subscriberRelationshipToPatinet' | translate }}</mat-label>
-                  <input formControlName="subscriberRelationshipToPatinet" matInput
-                    placeholder="{{ 'subscriberRelationshipToPatinet' | translate }}">
-                </mat-form-field>
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <button mat-raised-button color="primary" type="submit" class="mx-1">    {{'register' | translate}}</button>
-            <button mat-raised-button color="warn" type="button" (click)="onReset()" class="mx-1">
-              {{'reset' | translate}}
-            </button>
-          </div>
-        </form>
+        <app-patient-form></app-patient-form>
       </div>
-
-
-
     </div>
   </div>
 </div>
